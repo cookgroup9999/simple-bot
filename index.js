@@ -5,6 +5,7 @@ const Discord = require('discord.js')
 const client = new Discord.Client()
 client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
+const { prefix, Color } = require('./config.js')
 
 //** Packages variables **//
 
