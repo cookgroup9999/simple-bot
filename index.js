@@ -1,5 +1,10 @@
 const Discord = require('discord.js')
+
+//** client ** //
+
 const client = new Discord.Client()
+client.commands = new Discord.Collection();
+client.aliases = new Discord.Collection();
 
 //** Packages variables **//
 
@@ -45,4 +50,14 @@ console.log(`${client.user.username} / Me is ready on ${client.guilds.cache.size
 client.on('message', async message => {
 if(message.author.bot || message.channel.type === 'dm') return; // This returns if its a bot or in a dm channel
 
+const args = message.content.slice(prefix.length).trim().split(" ")
+let cmd = args.shift().toLowerCase()
+
+if(cmd) {
+    let command = client.commands.get(cmd) || client.commands.get(client.aliases.get(cmd));
+  
+  if(command) {
+    command.run(client, message, args)
+  }
+}
 })
