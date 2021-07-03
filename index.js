@@ -8,7 +8,7 @@ const db = require('quick.db')
 
 //** Command loading **//
 
-let modules = ["information", "moderation", "economy"];
+let modules = ["information", "moderation"];
 
 modules.forEach(function(module) {
   fs.readdir(`./commands/${module}`, function(err, files) {
