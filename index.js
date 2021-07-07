@@ -1,64 +1,84 @@
-const Discord = require('discord.js')
+const express = require('express')
+const app = express()
 
-//** client ** //
+app.get('/', async (req, res) => {
+	res.status(200).send("Working fine.")
+	console.log({
+		express: {
+			status: "connected",
+		}
+	})
+})
 
-const client = new Discord.Client()
+app.listen(8080) // This is a suggested PORT
+
+
+require('dotenv').config()
+const Discord = require("discord.js");
+const fs = require("fs");
+const client = new Discord.Client();
+const cluster2 = new Discord.Client()
+const { prefix, Color } = require("./config.js");
 client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
-const { prefix, Color } = require('./config.js')
+client.color = Color;
+let db = require("quick.db")
 
-//** Packages variables **//
+//** Command help **/
 
-const fs = require('fs')
-const db = require('quick.db')
+client.fun = [];
+client.information = [];
 
-//** Command loading **//
+// ** script ** //
 
-let modules = ["information", "moderation"];
+client.on("ready", async () => {
+console.log(`[-------------- The bot ${client.user.username} is ready! --------------]`)
+});
+
+let modules = ["information", "fun"];
 
 modules.forEach(function(module) {
   fs.readdir(`./commands/${module}`, function(err, files) {
-    if (err)
-      return new Error(
-        "Missing folder. please check the modules list"
-      );
+    if(err) return new Error("Missing folder. please check the modules list");
+		console.log(`--------------${module}--------------`)
     files.forEach(function(file) {
       if (!file.endsWith(".js")) return;
       let command = require(`./commands/${module}/${file}`);
       if (command.name) client.commands.set(command.name, command);
+			console.log(`${command.name} was loaded successfully`);
+			if(module === 'information') {
+				client.information.push(prefix + command.name)
+			} else if(module === 'fun') {
+				client.fun.push(prefix + command.name)
+			}
       if (command.aliases) {
         command.aliases.forEach(alias =>
-          client.aliases.set(alias, command.name)
-        );
-      }
-      if (command.aliases.length === 0) command.aliases = null;
+          client.aliases.set(alias, command.name));
+			}
+      if(command.aliases.length === 0) command.aliases = null;
     });
   });
 });
 
-//** Script **//
+client.on("message", async message => {
+  if(message.channel.type === "dm") return;
+  if(message.author.bot) return;
+  if(!message.content.startsWith(prefix)) return;
+  const args = message.content.slice(prefix.length).trim().split(" ");
+  const cmd = args.shift().toLowerCase();
 
-// --[ Client Ready ]-- //
+if(!cmd) return;
 
-client.on('ready', async () => {
+  let command = client.commands.get(cmd) || client.commands.get(client.aliases.get(cmd));
 
-console.log(`${client.user.username} / Me is ready on ${client.guilds.cache.size} servers!`)
+if(!command) return;
 
-})
-
-// --[ Client Message Handle ]-- //
-
-client.on('message', async message => {
-if(message.author.bot || message.channel.type === 'dm') return; // This returns if its a bot or in a dm channel
-
-const args = message.content.slice(prefix.length).trim().split(" ")
-let cmd = args.shift().toLowerCase()
-
-if(cmd) {
-    let command = client.commands.get(cmd) || client.commands.get(client.aliases.get(cmd));
-  
-  if(command) {
-    command.run(client, message, args)
-  }
+try {
+command.run(client, message, args, Discord, Color)
+} catch(err) {
+console.log(err)
 }
-})
+
+});
+
+client.login(process.env.token);
