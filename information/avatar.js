@@ -6,7 +6,7 @@ module.exports = {
   aliases: ["av", "pfp", "icon"],
   description: "Avatar",
   usage: "Get user avatar",
-  run: async(client, message, args) => {
+  run: async(client, message, args, Color) => {
     let member = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.member;
     
     let embed = new Discord.MessageEmbed()
