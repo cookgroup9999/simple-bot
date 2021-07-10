@@ -14,9 +14,6 @@ client.prefix = prefix;
 //** Packages **/
 
 let db = require("quick.db")
-const Database = require("@replit/database")
-const dat = new Database()
-
 
 //** Command help **/
 
