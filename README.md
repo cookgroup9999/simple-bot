@@ -1,13 +1,18 @@
-# Simple Bot
+## Simple Bot
 
-# Main File
+### License
 
-Go to index.js to see the main file. In Index.js it shows you how to use command handlers.
+MIT LICENSE
 
-## Commands
+### How to clone this repo?
 
-There are different type of commands on this repo. You can check them yourselves by clicking on folders
+Type in terminal of application "git clone https://github.com/DevFurry-1064/simple-bot/edit/main/README.md"
 
-### Errors
-- If theres no output on your terminal about ping was loaded or a command name was loaded, that means there's an error! You can make an issue
-- This repo is still work on progress
+### I have an issue
+
+Go to this repo's Issues section and create an new Issue then wait until a contributor help you.
+
+### Credits
+
+- DevFurry-1064
+- Fastering18
