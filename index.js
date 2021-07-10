@@ -31,7 +31,7 @@ await client.user.setActivity(`with ${client.users.cache.size} users | ${prefix}
 
 
 
-let modules = ["information", "fun", "util", "moderation"];
+let modules = ["information", "fun", "moderation"];
 
 modules.forEach(function(module) {
   fs.readdir(`./commands/${module}`, function(err, files) {
