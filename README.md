@@ -6,7 +6,7 @@ MIT LICENSE
 
 ### How to clone this repo?
 
-Type in terminal of application "git clone https://github.com/DevFurry-1064/simple-bot/edit/main/README.md"
+Type in terminal of application "git clone https://github.com/DevFurry-1064/simple-bot/edit/main/README.md".
 
 ### I have an issue
 
