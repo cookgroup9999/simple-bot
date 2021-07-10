@@ -22,7 +22,7 @@ client.information = [];
 client.util = [];
 client.moderation = [];
 
-// ** script ** //
+// ** Script ** //
 
 client.on("ready", async () => {
 console.log(`[-------------- The bot ${client.user.username} is ready! --------------]`)
