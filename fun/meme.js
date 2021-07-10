@@ -7,7 +7,7 @@ module.exports = {
   usage: "{prefix}meme",
   run: async(client, message, args) => {
 
-const wait = await message.channel.send(`${message.author}, please wait we are fetching a meme from reddit...`)
+const wait = await message.channel.send(`${message.author}, Please wait we are fetching a meme from reddit...`)
 
 got(`https://reddit.com/r/memes/random.json`).then(async response => {
 
