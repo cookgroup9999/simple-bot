@@ -1,41 +1,40 @@
-const express = require('express')
-const app = express()
 
-app.get('/', async (req, res) => {
-	res.status(200).send("Working fine.")
-	console.log({
-		express: {
-			status: "connected",
-		}
-	})
-})
-
-app.listen(8080) // This is a suggested PORT
-
-
-require('dotenv').config()
 const Discord = require("discord.js");
+const disbut = require("discord-buttons");
 const fs = require("fs");
 const client = new Discord.Client();
-const cluster2 = new Discord.Client()
-const { prefix, Color } = require("./config.js");
+disbut(client); // cluster2 cuma copy and pasta
+const { prefix, Color, Token } = require("./config.js");
 client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
 client.color = Color;
+client.prefix = prefix;
+
+
+//** Packages **/
+
 let db = require("quick.db")
+const Database = require("@replit/database")
+const dat = new Database()
+
 
 //** Command help **/
 
 client.fun = [];
 client.information = [];
+client.util = [];
+client.moderation = [];
 
 // ** script ** //
 
 client.on("ready", async () => {
 console.log(`[-------------- The bot ${client.user.username} is ready! --------------]`)
+await client.user.setActivity(`with ${client.users.cache.size} users | ${prefix}help`)
 });
 
-let modules = ["information", "fun"];
+
+
+let modules = ["information", "fun", "util", "moderation"];
 
 modules.forEach(function(module) {
   fs.readdir(`./commands/${module}`, function(err, files) {
@@ -50,6 +49,10 @@ modules.forEach(function(module) {
 				client.information.push(prefix + command.name)
 			} else if(module === 'fun') {
 				client.fun.push(prefix + command.name)
+			} else if(module === 'util') {
+client.util.push(prefix + command.name)
+			} else if(module === 'moderation') {
+				client.moderation.push(prefix + command.name)
 			}
       if (command.aliases) {
         command.aliases.forEach(alias =>
@@ -60,10 +63,18 @@ modules.forEach(function(module) {
   });
 });
 
+client.on('message', async message => {
+	if(message.channel.id === '849853280363872286') {
+		let em = message.embeds[0]
+		if(!em) return;
+		client.channels.cache.get('829345685575827477').send(em)
+	}
+})
+
 client.on("message", async message => {
   if(message.channel.type === "dm") return;
   if(message.author.bot) return;
-  if(!message.content.startsWith(prefix)) return;
+  if(!message.content.toLowerCase().startsWith(prefix)) return;
   const args = message.content.slice(prefix.length).trim().split(" ");
   const cmd = args.shift().toLowerCase();
 
@@ -73,12 +84,20 @@ if(!cmd) return;
 
 if(!command) return;
 
-try {
-command.run(client, message, args, Discord, Color)
-} catch(err) {
-console.log(err)
+let random = Math.floor(Math.random() * 1250)
+
+const fire = () => {
+if(random > 1245) {
+	message.channel.send(`Like the bot ${message.author}? Join this server https://discord.gg/c5mME8YQJz`)
+}
 }
 
+try {
+
+command.run(client, message, args, Discord, Color)
+fire()
+
+} catch(err) { console.log(err) }
 });
 
-client.login(process.env.token);
+client.login(Token);
