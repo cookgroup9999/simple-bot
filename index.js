@@ -60,14 +60,6 @@ client.util.push(prefix + command.name)
   });
 });
 
-client.on('message', async message => {
-	if(message.channel.id === '849853280363872286') {
-		let em = message.embeds[0]
-		if(!em) return;
-		client.channels.cache.get('829345685575827477').send(em)
-	}
-})
-
 client.on("message", async message => {
   if(message.channel.type === "dm") return;
   if(message.author.bot) return;
