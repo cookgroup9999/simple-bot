@@ -19,4 +19,4 @@ Go to this repo's Issues section and create an new Issue then wait until a contr
 
 Join [Our support](https://discord.gg/PBB72u7eZV)
 
-###### MIT LICENSE
+###### REPO LICENSE: "ISC" | JOIN OUR SUPPORT https://discord.gg/PBB72u7eZV | 
