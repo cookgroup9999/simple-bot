@@ -14,7 +14,8 @@ let questions = [
 	"I am busy fixing your room mirror, ask me later!",
 	"Yes!",
 	"100% yes.",
-	"Ask me later"
+	"Ask me later",
+	"idk mate"
 ]
 
 let Result = questions[Math.floor(Math.random() * questions.length)];
