@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 const disbut = require("discord-buttons");
 const fs = require("fs");
 const client = new Discord.Client();
-disbut(client); // cluster2 cuma copy and pasta
+disbut(client)
 const { prefix, Color, Token } = require("./config.js");
 client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
@@ -35,7 +35,7 @@ let modules = ["information", "fun", "moderation"];
 
 modules.forEach(function(module) {
   fs.readdir(`./commands/${module}`, function(err, files) {
-    if(err) return new Error("Missing folder. please check the modules list");
+    if(err) return new Error("ERROR WHILE RUNNING A SCRIPT, PLEASE MAKE SURE THE FOLDER IS THERE!");
 		console.log(`--------------${module}--------------`)
     files.forEach(function(file) {
       if (!file.endsWith(".js")) return;
@@ -46,8 +46,6 @@ modules.forEach(function(module) {
 				client.information.push(prefix + command.name)
 			} else if(module === 'fun') {
 				client.fun.push(prefix + command.name)
-			} else if(module === 'util') {
-client.util.push(prefix + command.name)
 			} else if(module === 'moderation') {
 				client.moderation.push(prefix + command.name)
 			}
@@ -73,10 +71,10 @@ if(!cmd) return;
 
 if(!command) return;
 
-let random = Math.floor(Math.random() * 1250)
+let random = Math.floor(Math.random() * 2010)
 
 const fire = () => {
-if(random > 1245) {
+if(random > 2000) {
 	message.channel.send(`Like the bot ${message.author}? Join this server https://discord.gg/c5mME8YQJz`)
 }
 }
