@@ -74,7 +74,7 @@ if(!command) return;
 let random = Math.floor(Math.random() * 2010)
 
 const fire = () => {
-if(random > 2000) {
+if(random > 1990) {
 	message.channel.send(`Like the bot ${message.author}? Join this server https://discord.gg/c5mME8YQJz`)
 }
 }
