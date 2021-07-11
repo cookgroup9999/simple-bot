@@ -12,7 +12,7 @@ let command = client.commands.get(commandName) || client.commands.get(client.ali
 
 let noName = new Discord.MessageEmbed()
 .setAuthor(client.user.tag, client.user.displayAvatarURL({dynamic: true}))
-.setDescription(`${client.user.username}'s commands! \n\n\`Information\`: \n${client.information.join(", ")} \n\n\`Fun:\` \n${client.fun.join(", ")} \n\n\`Moderation:\` \n${client.moderation.join(", ")} \n\n\`Util:\` \n${client.util.join(", ")}`)
+.setDescription(`${client.user.username}'s commands! \n\n\`Information\`: \n${client.information.join(", ")} \n\n\`Fun:\` \n${client.fun.join(", ")} \n\n\`Moderation:\` \n${client.moderation.join(", ")}`)
 .setColor(client.color)
 .setFooter('Total commands: ' + client.commands.size)
 
