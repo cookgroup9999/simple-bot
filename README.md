@@ -21,4 +21,4 @@ Join [Our support](https://discord.gg/PBB72u7eZV)
 
 ###### REPO LICENSE: "BSD" | JOIN OUR SUPPORT https://discord.gg/PBB72u7eZV | [DEVFURRY](https://discord.com/users/700531628618940498)
 
-###### By forking this repo you agree to name the source code file as "DevFurry-FOS"
+####### By forking this repo you agree to name the source code file as "DevFurry-FOS"
